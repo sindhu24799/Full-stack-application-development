@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎓 College Event Management System</h1>
+    <div class="user-info"> Logged in: John Doe (CSE)</div>
+  </header>
+
+  <nav>
+    <a href="index.html"> Home</a>
+    <a href="signup.html"> Sign Up</a>
+    <a href="upcoming-events.html"> Upcoming</a>
+    <a href="ongoing-events.html">Ongoing</a>
+    <a href="completed-events.html"> Completed</a>
+  </nav>
+
+  <div class="container">
+    <h2> Tech Fest 2026 - Registration</h2>
+    
+    <div class="event-card" style="margin-bottom: 30px;">
+      <h3>💻 Tech Fest 2026</h3>
+      <p class="event-date">15 March 2026 | Free Entry | 500 Spots Left</p>
+    </div>
+
+    <form>
+      <label for="full-name"> Full Name:</label>
+      <input type="text" id="full-name" required placeholder="John Doe" />
+
+      <label for="student-email"> Student Email:</label>
+      <input type="email" id="student-email" required placeholder="john@college.edu" />
+
+      <label for="dept">Department:</label>
+      <select id="dept" required>
+        <option value="">Select your department</option>
+        <option value="cse">Computer Science</option>
+        <option value="ece">Electronics & Comm</option>
+        <option value="mech">Mechanical</option>
+      </select>
+
+      <label for="phone-reg">📱 Phone Number:</label>
+      <input type="tel" id="phone-reg" required placeholder="9876543210" />
+
+      <label for="events-interested"> Events Interested In:</label>
+      <select id="events-interested" required>
+        <option value="">Choose event category</option>
+        <option value="coding">Coding Contest</option>
+        <option value="hackathon">Hackathon</option>
+        <option value="workshop">AI/ML Workshop</option>
+      </select>
+
+      <button type="submit"> Confirm Registration</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 20px; color: #27ae60; font-weight: 600;">
+       You'll receive confirmation email within 24 hours!
+    </p>
+  </div>
+
+  <footer>
+    © 2026 College Event Management | Secure Registration
+  </footer>
+</body>
+</html>
