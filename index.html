@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <script src="script.js"></script>
   <header>
     <h1>🎓 College Event Management System</h1>
   </header>
@@ -28,7 +29,7 @@
       <label for="password">Password:</label>
       <input type="password" id="password" required placeholder="Enter your password" />
 
-      <button type="submit">🚀 Login</button>
+      <button onclick=loginUser()>🚀 Login</button>
     </form>
     <p style="text-align: center; margin-top: 20px; color: #666;">
       Don't have an account? <a href="signup.html" style="color: #3498db;">Sign up here</a>
@@ -38,5 +39,28 @@
   <footer>
     © 2026 College Event Management | Made  for students
   </footer>
+  <script>
+  function loginUser() {
+      // get input values
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      // basic validation
+      if (email === "" || password === "") {
+          alert("Please fill all fields");
+          return;
+      }
+
+      // demo login logic
+      if (email === "student@college.edu" && password === "12345") {
+          alert("Login Successful!");
+          // redirect to dashboard (optional)
+          // window.location.href = "dashboard.html";
+      } else {
+          alert("Invalid email or password");
+      }
+  }
+</script>
+
 </body>
 </html>
