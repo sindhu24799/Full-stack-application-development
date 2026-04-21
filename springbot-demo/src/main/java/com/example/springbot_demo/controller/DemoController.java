@@ -1,0 +1,13 @@
+package com.example.springbot_demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+
+    @GetMapping("/demo")
+    public String test(){
+        return "Spring Boot running";
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark" th:fragment="navbar">
+    <div class="container">
+        <!-- Brand / Logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+            <div class="brand-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+                <div class="brand-title">SmartCampus</div>
+                <div class="brand-sub text-uppercase tracking-wide">Event Hub</div>
+            </div>
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0 shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <i class="fas fa-bars fs-4"></i>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/events">Events</a>
+                </li>
+            </ul>
+
+            <!-- Auth Controls -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Unauthenticated user -->
+                <div sec:authorize="isAnonymous()" class="d-flex gap-2">
+                    <a href="/login" class="nav-link">Log In</a>
+                    <a href="/signup" class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold">Sign Up</a>
+                </div>
+
+                <!-- Authenticated user -->
+                <div sec:authorize="isAuthenticated()" class="d-flex align-items-center gap-3">
+                    
+                    <!-- Student specific links -->
+                    <div sec:authorize="hasRole('STUDENT')" class="d-none d-lg-block">
+                        <a href="/my-events" class="nav-link">
+                            <i class="fas fa-ticket-alt me-1"></i> My Events
+                        </a>
+                    </div>
+                    
+                    <!-- Admin specific links -->
+                    <div sec:authorize="hasRole('ADMIN')" class="d-none d-lg-block">
+                        <a href="/admin/dashboard" class="nav-link admin-badge d-flex align-items-center gap-1">
+                            <i class="fas fa-shield-alt"></i> Admin Panel
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle fw-bold" 
+                                  style="width:32px; height:32px; font-size:14px;"
+                                  th:text="${#authentication.name.substring(0,1).toUpperCase()}">U</span>
+                            <span class="d-none d-sm-inline fw-semibold" sec:authentication="name">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2 rounded-3">
+                            <li class="px-3 py-2 border-bottom mb-1">
+                                <div class="fw-bold" sec:authentication="name">User</div>
+                                <div class="small text-muted" sec:authentication="principal.authorities">ROLE_USER</div>
+                            </li>
+                            <li sec:authorize="hasRole('STUDENT')">
+                                <a class="dropdown-item py-2" href="/my-events"><i class="fas fa-ticket-alt me-2 text-primary"></i>My Registered Events</a>
+                            </li>
+                            <li sec:authorize="hasRole('ADMIN')">
+                                <a class="dropdown-item py-2" href="/admin/dashboard"><i class="fas fa-tachometer-alt me-2 text-warning"></i>Dashboard</a>
+                            </li>
+                            <li sec:authorize="hasRole('ADMIN')">
+                                <a class="dropdown-item py-2" href="/admin/events"><i class="fas fa-list me-2 text-info"></i>Manage Events</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="/logout" method="post" class="m-0 p-0">
+                                    <button type="submit" class="dropdown-item py-2 text-danger">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
